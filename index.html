@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer type="module" src="js/script.js"></script>
+    <script src="https://moment.github.io/luxon/global/luxon.min.js"></script>
+  </head>
+  <body>
+    <!-- Header section -->
+    <header>
+      <div class="grid">
+        <div class="title">
+          Today's Weather
+          <img
+            class="title-weather-icon js-weather-icon"
+            src="img/icon/cloudyIcon.png"
+            alt="icon"
+          />
+        </div>
+
+        <h2 class="js-temperature-location">Philippine</h2>
+
+        <form action="">
+          <div class="input-wrapper">
+            <input class="js-input" type="text" placeholder="Search place" />
+          </div>
+          <button class="js-button"></button>
+        </form>
+
+        <ul>
+          <li class="date">August 13, 2022</li>
+          <li class="time">10:48AM</li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Main section -->
+    <main>
+      <section>
+        <div class="temperature-number-wrapper">
+          <span class="temperature-number js-main-temperature">9.66</span>
+          <sup>°C</sup>
+        </div>
+        <div class="temp-weather-wrapper">
+          <span class="temp-condition js-temperature-condition"
+            >Light rain</span
+          >
+          <img class="weather-condition-icon" alt="icon" />
+        </div>
+      </section>
+
+      <!-- Loading spinner -->
+      <div class="spinner hidden js-spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+      </div>
+    </main>
+
+    <!-- Footer section -->
+    <footer>
+      <ul class="grid">
+        <li>
+          <div class="temperature">Temperature</div>
+          <div class="js-bottom-temperature">9.66°C</div>
+        </li>
+        <li>
+          <div class="feels-like">Feels like</div>
+          <div class="js-feels-like">9.66°C</div>
+        </li>
+        <li>
+          <div class="humidity">Humidity</div>
+          <div class="js-humidity">93%</div>
+        </li>
+        <li>
+          <div class="wind">Wind</div>
+          <div class="js-speed">1.08km/h</div>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>
