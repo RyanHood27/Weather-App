@@ -9,7 +9,7 @@ import {
   WEATHER_API_KEY,
   OPEN_CAGE_DATA_API_KEY,
   weatherConditions,
-} from "./js/hiddenModule.js";
+} from "./hiddenModule.js";
 
 // ||Search country information //
 button.addEventListener("click", (e) => {
