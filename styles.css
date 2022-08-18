@@ -317,17 +317,6 @@ footer ul li div:last-child {
   }
 }
 
-/* ||Mobile styles landscape 760px*/
-@media (min-width: 47.5em), (orientation: landscape) {
-  html {
-    height: 100%;
-  }
-
-  body {
-    height: 100%;
-  }
-}
-
 /* ||Small tablets styles 620px*/
 @media (min-width: 38.75em) {
   header {
