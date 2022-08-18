@@ -173,6 +173,7 @@ main section {
 
 main section .temperature-number-wrapper {
   margin-bottom: -20px;
+  text-align: center;
 }
 
 main section .temperature-number {
