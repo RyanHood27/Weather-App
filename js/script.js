@@ -66,47 +66,60 @@ const renderWeatherData = (weatherData) => {
   document.querySelector(".js-speed").textContent = `${speed}km/h`;
 };
 
-// ||IIFE to get the user device location //
-(function userLocation() {
-  if (navigator.geolocation) {
-    const confirmLocation = confirm("Allow to get your location?");
-    confirmLocation == true
-      ? navigator.geolocation.getCurrentPosition(getLocation, Error)
-      : getWeather("Japan");
-  } else {
-    alert("Browser not supported, displaying default location");
-  }
-
-  function getLocation(data) {
-    let { latitude, longitude } = data.coords;
-    fetch(
-      "https://api.opencagedata.com/geocode/v1/json" +
-        "?" +
-        "key=" +
-        OPEN_CAGE_DATA_API_KEY +
-        "&q=" +
-        encodeURIComponent(latitude + "," + longitude) +
-        "&pretty=1" +
-        "&no_annotations=1"
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        const userLocation = response.results[0].components.city;
-        getWeather(userLocation);
-      })
-      .catch(() => {
-        alert("Something went wrong");
-      });
-  }
-
-  function Error(error) {
-    if (error.code == 1) {
-      alert("Location unavailable");
+// ||Get the user device location //
+let geocode = {
+  getLocation: () => {
+    // if browser support navigator.geolocation api, else for default 'Philippine location' //
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, console.error);
     } else {
-      alert("Something went wrong");
+      getWeather("Japan");
     }
-  }
-})();
+
+    function success(data) {
+      geocode.reverseGeocode(data.coords.latitude, data.coords.longitude);
+    }
+  },
+
+  reverseGeocode: (latitude, longitude) => {
+    let api_url = "https://api.opencagedata.com/geocode/v1/json";
+
+    let request_url =
+      api_url +
+      "?" +
+      "key=" +
+      OPEN_CAGE_DATA_API_KEY +
+      "&q=" +
+      encodeURIComponent(latitude + "," + longitude) +
+      "&pretty=1" +
+      "&no_annotations=1";
+
+    let request = new XMLHttpRequest();
+    request.open("GET", request_url, true);
+
+    request.onload = function () {
+      if (request.status === 200) {
+        // Success!
+        let data = JSON.parse(request.responseText);
+        getWeather(data.results[0].components.city);
+      } else if (request.status <= 500) {
+        console.log("unable to geocode! Response code: " + request.status);
+        let data = JSON.parse(request.responseText);
+        console.log("error msg: " + data.status.message);
+      } else {
+        console.log("server error");
+      }
+    };
+
+    request.onerror = function () {
+      // There was a connection error of some sort
+      console.log("unable to connect to server");
+    };
+
+    request.send(); // make the request
+  },
+};
+geocode.getLocation();
 
 // ||Date and Time //
 function dateTime() {
