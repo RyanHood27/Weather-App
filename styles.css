@@ -16,9 +16,10 @@
 }
 
 html {
-  height: -moz-available;
+  /* height: -moz-available;
   height: -webkit-fill-available;
-  height: fill-available;
+  height: fill-available; */
+  height: 100%;
 }
 
 body {
@@ -30,10 +31,7 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 100vh; /* fall-back */
-  height: -moz-available; /* Mozila fill-available */
-  height: -webkit-fill-available; /* Browsers fill-available */
-  height: fill-available;
+  min-height: 100vh;
 }
 
 li {
