@@ -317,6 +317,17 @@ footer ul li div:last-child {
   }
 }
 
+/* ||Mobile styles landscape */
+@media (min-width: 37.5em), (orientation: landscape) {
+  html {
+    height: 100%;
+  }
+
+  body {
+    height: inherit;
+  }
+}
+
 /* ||Small tablets styles 620px*/
 @media (min-width: 38.75em) {
   header {
@@ -356,8 +367,7 @@ footer ul li div:last-child {
   }
 
   footer ul li div:first-child {
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-size: 1.125rem;
   }
 }
 
